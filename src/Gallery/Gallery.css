@@ -3,7 +3,6 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
-    /* Adjust as needed */
 }
 
 /* Style for the featured image */
@@ -15,8 +14,10 @@
 /* Style for the other images */
 .image-container {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
 }
 
 .image-container img {
@@ -24,4 +25,33 @@
     max-height: 200px;
     display: block;
     margin: 0 auto;
+    transition: background-color 0.3s;
+}
+
+.image-checkbox {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.image-container:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.image-container:hover .image-checkbox {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.image-checkbox.visible {
+    opacity: 1;
+}
+
+.checked-counter {
+    font-size: 18px;
+    padding-left: 10px;
+
 }

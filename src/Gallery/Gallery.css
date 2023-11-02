@@ -1,8 +1,32 @@
 /* src/Gallery.css */
+.container {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
 .gallery {
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
+}
+
+/* Style for the "Delete" button */
+.delete-button {
+    background-color: #ff5252;
+    /* Red background color */
+    color: white;
+
+    /* White text color */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    background-color: #d81b1b;
+    /* Darker red color on hover */
 }
 
 /* Style for the featured image */
@@ -38,7 +62,26 @@
 }
 
 .image-container:hover {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.image-container.no-hover {
+    border: 1px dashed;
+}
+
+.image-container.no-hover:hover {
+    background-color: transparent;
+
+
+}
+
+.image-container.no-hover:hover img {
+    opacity: 1;
+}
+
+
+.image-container:hover img {
+    opacity: .5;
 }
 
 .image-container:hover .image-checkbox {
@@ -50,8 +93,16 @@
     opacity: 1;
 }
 
+.image-container .image-checkbox:checked+img {
+    opacity: 0.5;
+}
+
 .checked-counter {
     font-size: 18px;
     padding-left: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    /* Add margin to separate it from the "Delete" button */
+
 
 }

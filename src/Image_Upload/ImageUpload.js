@@ -1,23 +1,17 @@
 // src/ImageUpload.js
-import React, { useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
+
 import './ImageUpload.css'
 
 const ImageUpload = ({ onImageUpload }) => {
-    const onDrop = useCallback((acceptedFiles) => {
-        // Process and handle the uploaded images here
-        onImageUpload(acceptedFiles);
-    }, [onImageUpload]);
 
-    const { getRootProps, getInputProps } = useDropzone({
-        onDrop,
-        accept: 'image/*', // Allow only image files
-    });
 
     return (
-        <div {...getRootProps()} className="image-upload">
-            <input {...getInputProps()} />
-            <p>Add Images</p>
+        <div className="uploader" >
+            <input type="file" name='images' className="file-input" title='Add Images' multiple onChange={onImageUpload} />
+            <div className="uploader-container">
+                <img src="/placeholder.png" alt="Placeholder" id="uploaded-image" />
+                <span className="uploader-title">Add Images</span>
+            </div>
         </div>
     );
 };

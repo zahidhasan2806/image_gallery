@@ -5,6 +5,7 @@ const Gallery = () => {
     const [images, setImages] = useState([]);
     const [checkedCount, setCheckedCount] = useState(0);
 
+
     useEffect(() => {
         const url = '/db.json';
         fetch(url)
@@ -24,17 +25,40 @@ const Gallery = () => {
         const newCheckedCount = updatedImages.filter((image) => image.selected).length;
         setCheckedCount(newCheckedCount);
     };
-    const handleImageUpload = (uploadedImages) => {
-        // Handle the uploaded images, e.g., save them to state
-        console.log('Uploaded images:', uploadedImages);
-        // You can add code to store and display the uploaded images here
+
+
+    const handleImageUpload = (e) => {
+        const selectedFiles = e.target.files;
+        const newImages = Array.from(selectedFiles).map((file, index) => {
+            const id = images.length + index + 1;
+            const src = URL.createObjectURL(file);
+
+            return { id, src }
+        })
+        setImages([...images, ...newImages])
     };
 
-    return (
-        <div className="gallery">
-            <div className="checked-counter"><h4>{checkedCount}  Files selected</h4></div>
+    const handleDeleteSelected = (index) => {
+        // Remove the image from the images array based on its index
+        const updatedImages = images.filter((image) => !image.selected);
 
-            {images.map((image, index) => (
+        setImages(updatedImages);
+        // Update the checkedCount based on the selected images
+
+        const newCheckedCount = updatedImages.filter((image) => image.selected).length;
+        setCheckedCount(newCheckedCount);
+    };
+    return (<div className='container'>
+        <div className="gallery">
+
+
+
+            <div className="checked-counter"><h4>{checkedCount}  Files selected</h4></div>
+            <button className="delete-button" onClick={() => handleDeleteSelected()}>
+                Delete Selected
+            </button>
+
+            {images?.map((image, index) => (
                 <div
                     key={image.id}
                     className={`image-container ${image.selected ? 'selected' : ''} ${index === 0 ? 'featured-image' : ''}`} onClick={() => toggleCheckbox(index)}
@@ -45,11 +69,12 @@ const Gallery = () => {
                 </div>
             ))
             }
-            <div className="image-container">
-                <ImageUpload onImagesUploaded={handleImageUpload} />
+            <div className="image-container no-hover">
+                <ImageUpload onImageUpload={handleImageUpload} />
             </div>
 
         </div >
+    </div>
     );
 };
 

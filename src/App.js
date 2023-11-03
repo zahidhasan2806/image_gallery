@@ -1,4 +1,5 @@
 import Gallery from './Gallery/Gallery';
+import './App.css'
 
 function App() {
   return (

@@ -5,7 +5,6 @@
 # React Image Gallery
 
 
-Overview
 This is a customizable and responsive image gallery built using React. It allows users to view, reorder, delete multiple images, and set a feature image.
 
 

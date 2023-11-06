@@ -28,10 +28,10 @@
 .image-container {
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 5px;
     position: relative;
     cursor: pointer;
     transition: background-color 0.3s;
+    overflow: hidden;
 }
 
 /* Style for the image */
@@ -80,7 +80,8 @@
     opacity: 0;
     cursor: pointer;
     z-index: 1;
-    transition: opacity 0.3s;
+    opacity: 0;
+    transition: opacity 0.6s;
 }
 
 .image-checkbox.visible {
